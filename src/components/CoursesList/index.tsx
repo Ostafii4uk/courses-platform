@@ -12,7 +12,7 @@ export const CoursesList = () => {
   }, [])
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-6">
       <h1 className="text-center text-gray-900 dark:text-white">Our Courses</h1>
       <div className="flex flex-wrap gap-4 justify-center">
         {isLoadingCourses

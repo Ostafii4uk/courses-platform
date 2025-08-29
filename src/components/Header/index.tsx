@@ -25,7 +25,7 @@ export const Header = () => {
   }, [user])
 
   return (
-    <header className="flex justify-between items-center">
+    <header className="flex justify-between items-center sticky top-0 z-50 bg-white dark:bg-gray-900 p-4">
       <a href="https://mbdigital.io/" target="_blank" rel="noopener noreferrer">
         <h2 className="text-gray-900 dark:text-white">MBDigital.io</h2>
       </a>
