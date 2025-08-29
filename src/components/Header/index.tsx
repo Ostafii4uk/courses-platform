@@ -1,17 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useAppStore } from '@/src/store/appStore'
 import { ThemeToggle } from '@/src/components/ThemeToggle'
 import { Button } from '@/src/components/Button'
 
 export const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const { setIsOpenAuthenticationModal } = useAppStore()
+  const {
+    setIsOpenAuthenticationModal,
+    isLoggedIn,
+    setIsLoggedIn,
+    setPurchasedCoursesIDs,
+  } = useAppStore()
 
   const user = localStorage.getItem('user')
 
   const handleAuthentication = () => {
     if (isLoggedIn) {
       localStorage.removeItem('user')
+      setPurchasedCoursesIDs([])
       setIsLoggedIn(false)
     } else {
       setIsOpenAuthenticationModal(true)

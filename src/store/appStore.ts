@@ -12,6 +12,10 @@ interface IAppStore {
   setSelectedCourse: (selectedCourse: ICourse | null) => void
   isOpenCoursePreviewModal: boolean
   setIsOpenCoursePreviewModal: (isOpenCoursePreviewModal: boolean) => void
+  purchasedCoursesIDs: string[]
+  setPurchasedCoursesIDs: (purchasedCoursesIDs: string[]) => void
+  isLoggedIn: boolean
+  setIsLoggedIn: (isLoggedIn: boolean) => void
 }
 
 export const useAppStore = create<IAppStore>((set) => ({
@@ -27,4 +31,8 @@ export const useAppStore = create<IAppStore>((set) => ({
   isOpenCoursePreviewModal: false,
   setIsOpenCoursePreviewModal: (isOpenCoursePreviewModal) =>
     set({ isOpenCoursePreviewModal }),
+  purchasedCoursesIDs: [],
+  setPurchasedCoursesIDs: (purchasedCoursesIDs) => set({ purchasedCoursesIDs }),
+  isLoggedIn: false,
+  setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
 }))

@@ -23,6 +23,7 @@ export const AuthenticationModal = () => {
 
   const handleModalClose = () => {
     setIsOpenAuthenticationModal(false)
+    clearForm()
   }
 
   const clearForm = () => {
@@ -39,11 +40,10 @@ export const AuthenticationModal = () => {
     const passwordError = validatePassword(password)
     setPasswordError(passwordError)
 
-    console.log('Form submitted:', { email, password })
+    console.log('Authenticated:', { email, password })
 
     if (!passwordError && email && password) {
       localStorage.setItem('user', JSON.stringify({ email, password }))
-      clearForm()
       handleModalClose()
     }
   }
