@@ -1,6 +1,7 @@
 import { AuthenticationModal } from '@/src/components/AuthenticationModal'
 import { Header } from '@/src/components/Header'
 import { CoursesList } from '@/src/components/CoursesList'
+import { CoursePreviewModal } from '@/src/components/CoursePreviewModal'
 
 export const App = () => {
   return (
@@ -14,6 +15,7 @@ export const App = () => {
           <p className="text-gray-900 dark:text-white">© 2022, MBDigital.io</p>
         </footer>
         <AuthenticationModal />
+        <CoursePreviewModal />
       </div>
     </div>
   )

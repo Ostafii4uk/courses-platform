@@ -1,5 +1,6 @@
 import type { ICourse } from '@/src/types/course'
 import { useRef } from 'react'
+import { useAppStore } from '@/src/store/appStore'
 
 interface IProps {
   course: ICourse
@@ -8,6 +9,7 @@ interface IProps {
 export const CourseCard: React.FC<IProps> = ({ course }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   let hoverTimeout: NodeJS.Timeout
+  const { setSelectedCourse, setIsOpenCoursePreviewModal } = useAppStore()
 
   const handleMouseEnter = () => {
     hoverTimeout = setTimeout(() => {
@@ -25,8 +27,15 @@ export const CourseCard: React.FC<IProps> = ({ course }) => {
     }
   }
 
+  const handleClickCourse = () => {
+    setSelectedCourse(course)
+    setIsOpenCoursePreviewModal(true)
+    handleMouseLeave()
+  }
+
   return (
     <div
+      onClick={handleClickCourse}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 cursor-pointer"
