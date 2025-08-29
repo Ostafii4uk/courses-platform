@@ -1,15 +1,14 @@
 import { AuthenticationModal } from '@/src/components/AuthenticationModal'
 import { Header } from '@/src/components/Header'
+import { CoursesList } from '@/src/components/CoursesList'
 
 export const App = () => {
   return (
-    <div className="bg-white dark:bg-gray-800">
-      <div className="h-screen flex flex-col min-h-screen p-4 max-w-[1440px] mx-auto">
+    <div className="bg-white dark:bg-gray-900">
+      <div className="h-full flex flex-col min-h-screen p-4 max-w-[1440px] mx-auto">
         <Header />
         <main className="flex-auto">
-          <h1 className="text-center text-gray-900 dark:text-white">
-            Courses platform
-          </h1>
+          <CoursesList />
         </main>
         <footer className="flex justify-center">
           <p className="text-gray-900 dark:text-white">© 2022, MBDigital.io</p>

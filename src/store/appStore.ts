@@ -16,6 +16,6 @@ export const useAppStore = create<IAppStore>((set) => ({
     set({ isOpenAuthenticationModal }),
   courses: [],
   setCourses: (courses) => set({ courses }),
-  isLoadingCourses: false,
+  isLoadingCourses: true,
   setIsLoadingCourses: (isLoadingCourses) => set({ isLoadingCourses }),
 }))
