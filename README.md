@@ -1,69 +1,48 @@
-# React + TypeScript + Vite
+## ✨ Description
+This PR implements course listing, video playback, purchase flow, user authentication with validation, and theming.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## ✅ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [x] **CourseList component**
+  - Fetch courses from **mockapi (GET /courses)** or props
+  - Each course: `id`, `title`, `description`, `videoUrl`, `price`
+  - Display as cards with **"Buy"** button
+  - **Hover effect:** auto-play preview video (15s)
 
-## Expanding the ESLint configuration
+- [x] **Video Player**
+  - Open modal/inline player on course click
+  - HTML5 `<video>` with `videoUrl` (HLS/MP4)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [x] **Mock Payment**
+  - `handlePurchase(courseId)` function (returns success/error)
+  - Purchased courses stored in **Redux state**
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- [x] **State Management**
+  - Implemented with **Redux Toolkit**
+  - Stores purchased courses and current playing video
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- [x] **Authentication**
+  - Registration / Login form (Email + Password)
+  - User stored in **localStorage**
+  - Logout clears localStorage
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- [x] **Validation**
+  - Email must be valid
+  - Password requirements:
+    - min 6 characters
+    - 1 uppercase, 1 lowercase, 1 special character
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- [x] **UI/UX**
+  - Added **light & dark theme**
+  - Hover animations on course cards
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠 Tech Stack
+- React + Vite  
+- Zustand
+- mockapi.io (courses data)  
+- HTML5
+- Tailwind
