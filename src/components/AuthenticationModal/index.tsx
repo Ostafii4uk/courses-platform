@@ -1,18 +1,16 @@
+import { useAppStore } from '@/src/store/appStore'
 import { validateEmail } from '@/src/utils/validateEmail'
 import { validatePassword } from '@/src/utils/validatePassword'
 import cn from 'clsx'
 import { useState } from 'react'
 
-interface IProps {
-  isOpen: boolean
-  onClose: () => void
-}
-
-export const AuthenticationModal: React.FC<IProps> = ({ isOpen, onClose }) => {
+export const AuthenticationModal = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [emailError, setEmailError] = useState('')
+  const { isOpenAuthenticationModal, setIsOpenAuthenticationModal } =
+    useAppStore()
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
@@ -20,6 +18,10 @@ export const AuthenticationModal: React.FC<IProps> = ({ isOpen, onClose }) => {
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value)
+  }
+
+  const handleModalClose = () => {
+    setIsOpenAuthenticationModal(false)
   }
 
   const clearForm = () => {
@@ -41,7 +43,7 @@ export const AuthenticationModal: React.FC<IProps> = ({ isOpen, onClose }) => {
     if (!passwordError && email && password) {
       localStorage.setItem('user', JSON.stringify({ email, password }))
       clearForm()
-      onClose()
+      handleModalClose()
     }
   }
 
@@ -49,7 +51,7 @@ export const AuthenticationModal: React.FC<IProps> = ({ isOpen, onClose }) => {
     <div
       className={cn(
         'overflow-y-auto fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen max-h-full bg-black/55 dark:bg-black/85',
-        isOpen ? 'flex' : 'hidden overflow-x-hidden'
+        isOpenAuthenticationModal ? 'flex' : 'hidden overflow-x-hidden'
       )}
     >
       <section className="w-full">
@@ -62,7 +64,7 @@ export const AuthenticationModal: React.FC<IProps> = ({ isOpen, onClose }) => {
                 </h3>
                 <button
                   className="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                  onClick={onClose}
+                  onClick={handleModalClose}
                 >
                   <svg
                     className="w-3 h-3"
