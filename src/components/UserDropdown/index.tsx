@@ -21,6 +21,7 @@ export const UserDropdown = () => {
   }
 
   const handleMyCoursesClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     setIsOpen(false)
     setIsMyCoursesListOpen(true)
   }
