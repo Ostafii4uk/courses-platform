@@ -21,6 +21,8 @@ interface IAppStore {
   setUser: (user: IUser | null) => void
   isMyCoursesListOpen: boolean
   setIsMyCoursesListOpen: (isMyCoursesListOpen: boolean) => void
+  isOpenConfirmationBuyModal: boolean
+  setIsOpenConfirmationBuyModal: (isOpenConfirmationBuyModal: boolean) => void
 }
 
 export const useAppStore = create<IAppStore>((set) => ({
@@ -44,4 +46,7 @@ export const useAppStore = create<IAppStore>((set) => ({
   setUser: (user) => set({ user }),
   isMyCoursesListOpen: false,
   setIsMyCoursesListOpen: (isMyCoursesListOpen) => set({ isMyCoursesListOpen }),
+  isOpenConfirmationBuyModal: false,
+  setIsOpenConfirmationBuyModal: (isOpenConfirmationBuyModal) =>
+    set({ isOpenConfirmationBuyModal }),
 }))

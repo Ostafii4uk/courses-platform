@@ -4,6 +4,7 @@ import { validatePassword } from '@/src/utils/validatePassword'
 import cn from 'clsx'
 import { useState } from 'react'
 import { Button } from '@/src/components/Button'
+import { USER_DEFAULT_BALANCE } from '@/src/constants'
 
 export const AuthenticationModal = () => {
   const [email, setEmail] = useState('')
@@ -45,11 +46,20 @@ export const AuthenticationModal = () => {
     setPasswordError(passwordError)
 
     if (!passwordError && email && password) {
-      localStorage.setItem('user', JSON.stringify({ email, password }))
-      setUser({ email, password })
+      const newUser = {
+        email,
+        password,
+        balance: USER_DEFAULT_BALANCE,
+      }
+      localStorage.setItem('user', JSON.stringify(newUser))
+      setUser(newUser)
       setIsLoggedIn(true)
       handleModalClose()
     }
+  }
+
+  if (!isOpenAuthenticationModal) {
+    return null
   }
 
   return (

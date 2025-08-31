@@ -9,25 +9,28 @@ interface IProps {
 export const BuyCourseBtn: React.FC<IProps> = ({ course }) => {
   const {
     setIsOpenAuthenticationModal,
-    setPurchasedCourses,
-    purchasedCourses,
+    setSelectedCourse,
+    setIsOpenConfirmationBuyModal,
+    user,
   } = useAppStore()
-
-  const handlePurchase = (course: ICourse) => {
-    setPurchasedCourses([...purchasedCourses, course])
-    localStorage.setItem(
-      'purchasedCourses',
-      JSON.stringify([...purchasedCourses, course])
-    )
-  }
 
   const handleBuyCourse = () => {
     if (!localStorage.getItem('user')) {
       setIsOpenAuthenticationModal(true)
     } else {
-      handlePurchase(course)
+      if (course.price <= (user?.balance || 0)) {
+        setSelectedCourse(course)
+        setIsOpenConfirmationBuyModal(true)
+      }
     }
   }
 
-  return <Button onClick={handleBuyCourse}>Buy</Button>
+  return (
+    <Button
+      disabled={course.price > (user?.balance || 0)}
+      onClick={handleBuyCourse}
+    >
+      Buy
+    </Button>
+  )
 }

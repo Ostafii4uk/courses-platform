@@ -14,6 +14,7 @@ export const UserDropdown = () => {
 
   const handleSignOut = () => {
     localStorage.removeItem('user')
+    localStorage.removeItem('purchasedCourses')
     setUser(null)
     setPurchasedCourses([])
     setIsLoggedIn(false)
@@ -69,8 +70,11 @@ export const UserDropdown = () => {
 
       {isOpen && (
         <div className="absolute divide-y divide-gray-100 dark:divide-gray-600 right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700">
-          <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+          <div className="px-4 py-3 text-sm text-gray-900 dark:text-white flex flex-col gap-1">
             <div className="font-medium truncate">{user?.email}</div>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              User balance: ${user?.balance ?? 0}
+            </p>
           </div>
           <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
             <li
