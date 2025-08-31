@@ -17,11 +17,13 @@ export const CourseCard: React.FC<IProps> = ({ course }) => {
     setIsOpenAuthenticationModal,
     setSelectedCourse,
     setIsOpenCoursePreviewModal,
-    purchasedCoursesIDs,
+    purchasedCourses,
     isLoggedIn,
   } = useAppStore()
 
-  const isPurchasedCourse = purchasedCoursesIDs.includes(course.id)
+  const isPurchasedCourse = purchasedCourses.some(
+    (purchasedCourse) => purchasedCourse.id === course.id
+  )
 
   const handleMouseEnter = () => {
     hoverTimeout = setTimeout(() => {
@@ -90,7 +92,7 @@ export const CourseCard: React.FC<IProps> = ({ course }) => {
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
               ${course.price}
             </span>
-            <BuyCourseBtn courseId={course.id} />
+            <BuyCourseBtn course={course} />
           </div>
         ) : (
           <Button onClick={handleClickCourse}>Watch Course</Button>

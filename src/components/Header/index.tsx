@@ -2,13 +2,15 @@ import { useEffect } from 'react'
 import { useAppStore } from '@/src/store/appStore'
 import { ThemeToggle } from '@/src/components/ThemeToggle'
 import { Button } from '@/src/components/Button'
+import { UserDropdown } from '@/src/components/UserDropdown'
 
 export const Header = () => {
   const {
     setIsOpenAuthenticationModal,
     isLoggedIn,
     setIsLoggedIn,
-    setPurchasedCoursesIDs,
+    setPurchasedCourses,
+    setUser,
   } = useAppStore()
 
   const user = localStorage.getItem('user')
@@ -16,7 +18,8 @@ export const Header = () => {
   const handleAuthentication = () => {
     if (isLoggedIn) {
       localStorage.removeItem('user')
-      setPurchasedCoursesIDs([])
+      setUser(null)
+      setPurchasedCourses([])
       setIsLoggedIn(false)
     } else {
       setIsOpenAuthenticationModal(true)
@@ -36,9 +39,8 @@ export const Header = () => {
       </a>
       <div className="flex gap-2 items-center">
         <ThemeToggle />
-        <Button onClick={handleAuthentication}>
-          {isLoggedIn ? 'Log out' : 'Log in'}
-        </Button>
+        {isLoggedIn && <UserDropdown />}
+        {!isLoggedIn && <Button onClick={handleAuthentication}>Log in</Button>}
       </div>
     </header>
   )

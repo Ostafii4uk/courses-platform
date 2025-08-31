@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import type { ICourse } from '@/src/types/course'
+import type { IUser } from '@/src/types/user'
 
 interface IAppStore {
   isOpenAuthenticationModal: boolean
@@ -12,10 +13,14 @@ interface IAppStore {
   setSelectedCourse: (selectedCourse: ICourse | null) => void
   isOpenCoursePreviewModal: boolean
   setIsOpenCoursePreviewModal: (isOpenCoursePreviewModal: boolean) => void
-  purchasedCoursesIDs: string[]
-  setPurchasedCoursesIDs: (purchasedCoursesIDs: string[]) => void
+  purchasedCourses: ICourse[]
+  setPurchasedCourses: (purchasedCourses: ICourse[]) => void
   isLoggedIn: boolean
   setIsLoggedIn: (isLoggedIn: boolean) => void
+  user: IUser | null
+  setUser: (user: IUser | null) => void
+  isMyCoursesListOpen: boolean
+  setIsMyCoursesListOpen: (isMyCoursesListOpen: boolean) => void
 }
 
 export const useAppStore = create<IAppStore>((set) => ({
@@ -31,8 +36,12 @@ export const useAppStore = create<IAppStore>((set) => ({
   isOpenCoursePreviewModal: false,
   setIsOpenCoursePreviewModal: (isOpenCoursePreviewModal) =>
     set({ isOpenCoursePreviewModal }),
-  purchasedCoursesIDs: [],
-  setPurchasedCoursesIDs: (purchasedCoursesIDs) => set({ purchasedCoursesIDs }),
+  purchasedCourses: [],
+  setPurchasedCourses: (purchasedCourses) => set({ purchasedCourses }),
   isLoggedIn: false,
   setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
+  user: null,
+  setUser: (user) => set({ user }),
+  isMyCoursesListOpen: false,
+  setIsMyCoursesListOpen: (isMyCoursesListOpen) => set({ isMyCoursesListOpen }),
 }))

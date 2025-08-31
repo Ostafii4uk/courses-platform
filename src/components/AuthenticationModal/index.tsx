@@ -10,8 +10,12 @@ export const AuthenticationModal = () => {
   const [password, setPassword] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [emailError, setEmailError] = useState('')
-  const { isOpenAuthenticationModal, setIsOpenAuthenticationModal } =
-    useAppStore()
+  const {
+    isOpenAuthenticationModal,
+    setIsOpenAuthenticationModal,
+    setUser,
+    setIsLoggedIn,
+  } = useAppStore()
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
@@ -40,10 +44,10 @@ export const AuthenticationModal = () => {
     const passwordError = validatePassword(password)
     setPasswordError(passwordError)
 
-    console.log('Authenticated:', { email, password })
-
     if (!passwordError && email && password) {
       localStorage.setItem('user', JSON.stringify({ email, password }))
+      setUser({ email, password })
+      setIsLoggedIn(true)
       handleModalClose()
     }
   }
