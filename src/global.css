@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  margin: 0;
+  background: black;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  cursor: pointer;
+}
